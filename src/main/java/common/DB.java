@@ -18,14 +18,19 @@ import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.mchange.v2.c3p0.DataSources;
+
+import processor.GetLinkProcessor;
 
 
 
 
 public class DB {
 	
+	private static Logger logger = LoggerFactory.getLogger(DB.class);
 	private static DataSource ds = null;
 	private static QueryRunner qr = null;
 	private static DB instance = new DB();
@@ -37,8 +42,7 @@ public class DB {
 				ds =DataSources.unpooledDataSource(prop.getProperty("url"), prop.getProperty("username"), prop.getProperty("password"));
 				qr = new QueryRunner(ds);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.error("数据库连接失败",e);
 			}
 		}
 	}
@@ -88,12 +92,16 @@ public class DB {
 		try {
 			 movie_insert = qr.insert(sql, new MapHandler(),obj );
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error("数据库插入失败",e);//打印堆栈信息
 		}
 		return true;
 		
 	}
+	private static void getOurStackTrace() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * insert  one for class
 	 * @param clazz
