@@ -7,10 +7,7 @@ import us.codecraft.webmagic.Spider;
 
 public class SpiderJob {
 	public static void spider(){
-		String url = "http://www.nobuger.com/";
-		long version = System.currentTimeMillis();
-		//活动列表
-		//
+		String url = "http://blog.nobuger.com/";
         Spider.create(new GetLinkProcessor())
                 .addUrl(url)
                 //.addPipeline(new DbPipeline(version))
@@ -19,6 +16,5 @@ public class SpiderJob {
                 .thread(1)
                 //启动爬虫
                 .run();
-        System.out.println("爬虫最新版本\r"+version);
 	}
 }

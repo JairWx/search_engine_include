@@ -12,7 +12,7 @@ public class CommitBatch {
 	private String notSameSite;
 	private String notValid;
 	private String searchEngineName;
-	private int createDateTime;
+	private long createDateTime;
 	public int getId() {
 		return id;
 	}
@@ -49,10 +49,10 @@ public class CommitBatch {
 	public void setSearchEngineName(String searchEngineName) {
 		this.searchEngineName = searchEngineName;
 	}
-	public int getCreateDateTime() {
+	public long getCreateDateTime() {
 		return createDateTime;
 	}
-	public void setCreateDateTime(int createDateTime) {
+	public void setCreateDateTime(long createDateTime) {
 		this.createDateTime = createDateTime;
 	}
 	
